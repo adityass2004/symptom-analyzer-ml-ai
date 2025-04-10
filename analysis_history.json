@@ -78,5 +78,68 @@
         "1. Steam Inhalation: Boil water, add a few drops of eucalyptus oil, lean over the steam and cover your head with a towel. Breathe deeply for 5-10 minutes to help relieve congestion.\n\n2. Hydration: Drink plenty of fluids such as water, herbal tea (chamomile or peppermint), or clear broths to keep hydrated and soothe a sore throat.\n\n3. Saline Nasal Spray: Use a saline nasal spray to help unblock your nose and reduce irritation.\n\n4. Warm Compress: Apply a warm compress to the forehead and eyes to relieve headache and redness.\n\n5. Humidifier: Use a humidifier in your room to add moisture to the air, which can help soothe a dry throat and cough.\n\n6. Throat lozenges or cough drops: These can provide temporary relief for sore throats and coughs."
       ]
     ]
+  },
+  {
+    "timestamp": "2025-04-10 16:02:35",
+    "symptoms": [
+      "Itching",
+      "Skin Rash",
+      "Continuous Sneezing",
+      "Chills"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": [
+        "Loratadine (Claritin), Cetirizine (Zyrtec), Levocetirizine (Xyzal)"
+      ],
+      "precautions": [
+        "Avoid exposure to allergens, Keep the environment clean and dust-free, Wear protective clothing if necessary"
+      ],
+      "advice": [
+        "Consult a doctor for persisting symptoms or worsening condition, Maintain proper hygiene, Drink plenty of fluids"
+      ]
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-04-10 16:05:27",
+    "symptoms": [
+      "Joint Pain",
+      "Nodal Skin Eruptions",
+      "Continuous Sneezing"
+    ],
+    "predicted_disease": "Fungal infection",
+    "analysis": {
+      "medicines": "[Fluconazole, Itraconazole]",
+      "precautions": "[Avoid direct sunlight on affected skin areas, Maintain good hygiene, Consult doctor before using any over-the-counter creams or ointments]",
+      "advice": [
+        "Regularly monitor skin condition, Keep a close watch for spread of infection to other parts of the body"
+      ]
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-04-10 16:08:38",
+    "symptoms": [
+      "Shivering",
+      "Restlessness",
+      "Continuous Sneezing"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": "Loratadine (Claritin) or Cetirizine (Zyrtec)",
+      "precautions": "Avoid exposure to allergens, use non-drowsy formulations during the day if possible",
+      "advice": "Consult a doctor if symptoms persist or worsen"
+    },
+    "chat": [
+      [
+        "You",
+        "Guide me how to take dosage wrt to time ."
+      ],
+      [
+        "AI",
+        "1. For continuous sneezing, consider an antihistamine such as loratadine (Claritin). Take one tablet by mouth once daily, preferably in the morning.\n\n2. If shivering and restlessness are due to discomfort or fever, an analgesic-antipyretic like ibuprofen (Advil, Motrin) can be helpful. Take 200-400mg every 6-8 hours as needed for pain relief and fever reduction.\n\n3. If your symptoms persist or worsen, please consult a healthcare professional for further evaluation and appropriate management."
+      ]
+    ]
   }
 ]

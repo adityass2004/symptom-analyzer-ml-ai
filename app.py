@@ -184,7 +184,7 @@ if not st.session_state.get("viewing_history"):
                             error_occurred = True
                             break
                         full_response = chunk
-                        result_box.code(full_response, language="json")
+                        # result_box.code(full_response, language="json")
 
                     if not error_occurred:
                         try:
