@@ -44,6 +44,7 @@ This project utilizes Ollama with the Mistral model, a local Large Language Mode
     numpy
     pandas
     scikit-learn
+    scipy
     ```
 
 3.  **Ensure Ollama is running:** Start the Ollama service in your terminal.
