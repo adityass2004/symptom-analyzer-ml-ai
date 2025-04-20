@@ -153,6 +153,7 @@ def predictDisease(symptoms):
 
 # 📥 Input Symptoms
 
+
 with st.expander("📋 View All Available Symptoms"):
     st.markdown("**You can select from the following symptoms:**")
     
@@ -165,6 +166,8 @@ with st.expander("📋 View All Available Symptoms"):
             if i + j < len(available_symptoms):
                 idx = i + j + 1
                 cols[j].markdown(f"<div style='background-color:#1e1e1e; color:white; padding:10px; margin:10px; border-radius:8px; font-size:15px;'>{idx}. {available_symptoms[i + j]}</div>", unsafe_allow_html=True)
+
+
 
 symptoms = []
 if not st.session_state.get("viewing_history"):
