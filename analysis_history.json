@@ -1,0 +1,207 @@
+[
+  {
+    "timestamp": "2025-03-13 17:39:44",
+    "symptoms": [
+      "Loss Of Appetite",
+      "Headache",
+      "Vomiting",
+      "Depression"
+    ],
+    "predicted_disease": "Paralysis (brain hemorrhage)",
+    "analysis": {
+      "medicines": "Acetaminophen for headache relief, Metoclopramide or Ondansetron for vomiting, and antidepressants prescribed by a healthcare professional for depression",
+      "precautions": "Avoid heavy lifting or any strenuous activity, limit exposure to loud noises, and monitor blood pressure regularly",
+      "advice": "Seek immediate medical attention if symptoms worsen, especially signs of increased intracranial pressure such as worsening headache or change in level of consciousness"
+    },
+    "chat": [
+      [
+        "You",
+        "will i survive ?"
+      ],
+      [
+        "AI",
+        "1. I am an AI and cannot diagnose or predict survival rates.\n2. If you are experiencing the symptoms mentioned, it is crucial to seek immediate medical attention from a healthcare professional for proper diagnosis and treatment.\n3. Following their advice and taking prescribed medications as directed will improve your chances of recovery.\n4. Make sure to stay hydrated and rest adequately while awaiting medical help."
+      ],
+      [
+        "You",
+        "i do gym and heavy weight is it an problem "
+      ],
+      [
+        "AI",
+        "1. Continue your regular gym routine if you feel up to it, but adjust the intensity according to how you feel each day.\n2. If vomiting occurs after exercise, avoid strenuous activity immediately before or after workouts.\n3. Stay hydrated by drinking plenty of water throughout the day, especially before and after exercise.\n4. Eat small, nutritious meals throughout the day to help manage your appetite.\n5. If you experience worsening symptoms or feel unusually tired during exercise, consult a healthcare professional for advice."
+      ]
+    ]
+  },
+  {
+    "timestamp": "2025-03-13 18:03:41",
+    "symptoms": [
+      "Chest Pain",
+      "Unsteadiness",
+      "Anxiety"
+    ],
+    "predicted_disease": "(vertigo) Paroymsal  Positional Vertigo",
+    "analysis": {
+      "medicines": [
+        "Betahistine, Meclizine"
+      ],
+      "precautions": [
+        "Avoid driving or operating machinery if symptoms worsen, Limit salt and caffeine intake, Maintain a regular sleep schedule"
+      ],
+      "advice": [
+        "Perform the Epley maneuver as directed by your doctor, Use a support system for balance, Consult an audiologist for hearing tests"
+      ]
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-03-14 02:26:41",
+    "symptoms": [
+      "Cough",
+      "Continuous Sneezing",
+      "Throat Irritation",
+      "Headache",
+      "Redness Of Eyes"
+    ],
+    "predicted_disease": "Common Cold",
+    "analysis": {
+      "medicines": "Ibuprofen, Acetaminophen, Decongestants, Expectorants",
+      "precautions": "Avoid close contact with sick individuals, Frequent hand washing, Avoid touching eyes, nose, and mouth",
+      "advice": "Stay hydrated, Rest as much as possible, Use a humidifier"
+    },
+    "chat": [
+      [
+        "You",
+        "Can you Advice some exercises to get fast relifes ."
+      ],
+      [
+        "AI",
+        "1. Steam Inhalation: Boil water, add a few drops of eucalyptus oil, lean over the steam and cover your head with a towel. Breathe deeply for 5-10 minutes to help relieve congestion.\n\n2. Hydration: Drink plenty of fluids such as water, herbal tea (chamomile or peppermint), or clear broths to keep hydrated and soothe a sore throat.\n\n3. Saline Nasal Spray: Use a saline nasal spray to help unblock your nose and reduce irritation.\n\n4. Warm Compress: Apply a warm compress to the forehead and eyes to relieve headache and redness.\n\n5. Humidifier: Use a humidifier in your room to add moisture to the air, which can help soothe a dry throat and cough.\n\n6. Throat lozenges or cough drops: These can provide temporary relief for sore throats and coughs."
+      ]
+    ]
+  },
+  {
+    "timestamp": "2025-04-10 16:02:35",
+    "symptoms": [
+      "Itching",
+      "Skin Rash",
+      "Continuous Sneezing",
+      "Chills"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": [
+        "Loratadine (Claritin), Cetirizine (Zyrtec), Levocetirizine (Xyzal)"
+      ],
+      "precautions": [
+        "Avoid exposure to allergens, Keep the environment clean and dust-free, Wear protective clothing if necessary"
+      ],
+      "advice": [
+        "Consult a doctor for persisting symptoms or worsening condition, Maintain proper hygiene, Drink plenty of fluids"
+      ]
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-04-10 16:05:27",
+    "symptoms": [
+      "Joint Pain",
+      "Nodal Skin Eruptions",
+      "Continuous Sneezing"
+    ],
+    "predicted_disease": "Fungal infection",
+    "analysis": {
+      "medicines": "[Fluconazole, Itraconazole]",
+      "precautions": "[Avoid direct sunlight on affected skin areas, Maintain good hygiene, Consult doctor before using any over-the-counter creams or ointments]",
+      "advice": [
+        "Regularly monitor skin condition, Keep a close watch for spread of infection to other parts of the body"
+      ]
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-04-10 16:08:38",
+    "symptoms": [
+      "Shivering",
+      "Restlessness",
+      "Continuous Sneezing"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": "Loratadine (Claritin) or Cetirizine (Zyrtec)",
+      "precautions": "Avoid exposure to allergens, use non-drowsy formulations during the day if possible",
+      "advice": "Consult a doctor if symptoms persist or worsen"
+    },
+    "chat": [
+      [
+        "You",
+        "Guide me how to take dosage wrt to time ."
+      ],
+      [
+        "AI",
+        "1. For continuous sneezing, consider an antihistamine such as loratadine (Claritin). Take one tablet by mouth once daily, preferably in the morning.\n\n2. If shivering and restlessness are due to discomfort or fever, an analgesic-antipyretic like ibuprofen (Advil, Motrin) can be helpful. Take 200-400mg every 6-8 hours as needed for pain relief and fever reduction.\n\n3. If your symptoms persist or worsen, please consult a healthcare professional for further evaluation and appropriate management."
+      ]
+    ]
+  },
+  {
+    "timestamp": "2025-04-17 12:30:33",
+    "symptoms": [
+      "Skin Rash",
+      "Continuous Sneezing"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": "Loratadine, Cetirizine, Levocetirizine",
+      "precautions": "Avoid alcohol consumption, inform your doctor about any other medications you are taking",
+      "advice": "Maintain good hygiene to prevent spread of allergens, monitor symptoms closely"
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-04-18 23:52:04",
+    "symptoms": [
+      "Itching",
+      "Continuous Sneezing",
+      "Continuous Sneezing"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": "Loratadine, Cetirizine, Levocetirizine",
+      "precautions": "Avoid exposure to allergens, use non-drowsy formulations during the day, monitor for side effects",
+      "advice": "Regularly clean household surfaces, maintain proper hygiene, consider allergy tests if symptoms persist"
+    },
+    "chat": [
+      [
+        "You",
+        "hi how to take dosages"
+      ],
+      [
+        "AI",
+        "1. Read the medication label carefully for dosage instructions specific to your product.\n2. If no label is available, consult a healthcare professional or pharmacist for guidance on proper usage.\n3. Take the prescribed dose as directed by frequency (e.g., twice daily) and amount (e.g., one tablet).\n4. Be aware that over-the-counter allergy medications typically come in 24-hour dosage forms, so follow the instructions for either a single or divided dose based on your symptoms.\n5. Some medications require taking with food, while others should be taken on an empty stomach to maximize effectiveness. Make sure you understand any special requirements for your medicine."
+      ]
+    ]
+  },
+  {
+    "timestamp": "2025-04-18 23:55:19",
+    "symptoms": [
+      "Itching",
+      "Shivering",
+      "Continuous Sneezing"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": "[Allegra, Claritin, Zyrtec]",
+      "precautions": "[Avoid exposure to known allergens, Keep environment clean, Use hypoallergenic products]",
+      "advice": "[Consult a doctor for severe symptoms, Over-the-counter medications should be used under a doctor's guidance]"
+    },
+    "chat": [
+      [
+        "You",
+        "how to take medicines "
+      ],
+      [
+        "AI",
+        "1. Read the medication label carefully for proper dosage instructions.\n2. Take the medicine as directed, usually by mouth unless otherwise specified.\n3. Swallow the pill whole with water if it's a tablet or capsule.\n4. If it's a liquid medicine, use the measuring device provided to get the correct dose.\n5. For inhalers, shake well before using and follow the instructions on how to inhale correctly.\n6. If you have any doubts or concerns about taking your medication, consult with a healthcare professional."
+      ]
+    ]
+  }
+]
