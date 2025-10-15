@@ -203,5 +203,78 @@
         "1. Read the medication label carefully for proper dosage instructions.\n2. Take the medicine as directed, usually by mouth unless otherwise specified.\n3. Swallow the pill whole with water if it's a tablet or capsule.\n4. If it's a liquid medicine, use the measuring device provided to get the correct dose.\n5. For inhalers, shake well before using and follow the instructions on how to inhale correctly.\n6. If you have any doubts or concerns about taking your medication, consult with a healthcare professional."
       ]
     ]
+  },
+  {
+    "timestamp": "2025-04-21 09:27:23",
+    "symptoms": [
+      "Itching",
+      "Skin Rash",
+      "Nodal Skin Eruptions"
+    ],
+    "predicted_disease": "Fungal infection",
+    "analysis": {
+      "medicines": "Griseofulvin, Terbinafine Hydrochloride, Ketoconazole",
+      "precautions": "Avoid close contact with others, especially if they have a fungal infection. Wash clothing and bedding regularly in hot water.",
+      "advice": "Apply an antifungal cream or powder as directed by your doctor to the affected area."
+    },
+    "chat": [
+      [
+        "You",
+        "Can I take some coldrinks as it too hot ?"
+      ],
+      [
+        "AI",
+        "1. Yes, you can drink cold drinks to help stay hydrated during hot weather.\n2. However, avoid alcoholic beverages as they may exacerbate the skin symptoms you are experiencing.\n3. Opt for water or non-alcoholic drinks like fresh fruit juices or herbal teas.\n4. If possible, try to drink cool beverages that do not contain caffeine as it can dehydrate your body and potentially worsen the itching sensation."
+      ]
+    ]
+  },
+  {
+    "timestamp": "2025-04-21 11:01:26",
+    "symptoms": [
+      "Itching",
+      "Skin Rash",
+      "Nodal Skin Eruptions"
+    ],
+    "predicted_disease": "Fungal infection",
+    "analysis": {
+      "medicines": [
+        "Clotrimazole cream, Ketoconazole shampoo, Griseofulvin tablets"
+      ],
+      "precautions": [
+        "Avoid scratching the affected area, Keep the affected area clean and dry, Inform doctor about any other medications being taken"
+      ],
+      "advice": [
+        "Apply the prescribed antifungal cream regularly as directed by your doctor, Use an over-the-counter antifungal shampoo if scalp involvement is present, Take Griseofulvin tablets only as prescribed, Continue using the medication even after symptoms disappear to ensure complete elimination of fungus"
+      ]
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-05-02 06:42:45",
+    "symptoms": [
+      "Muscle Weakness",
+      "Nausea",
+      "Loss Of Appetite",
+      "Dizziness"
+    ],
+    "predicted_disease": "Arthritis",
+    "analysis": {
+      "medicines": [
+        "Ibuprofen",
+        "Acetaminophen",
+        "Diclofenac"
+      ],
+      "precautions": [
+        "Avoid driving or operating machinery if dizziness persists",
+        "Inform doctor about other medications being taken",
+        "Maintain a balanced diet rich in fruits and vegetables"
+      ],
+      "advice": [
+        "Rest as much as possible",
+        "Stay hydrated",
+        "Regular exercise to maintain muscle strength"
+      ]
+    },
+    "chat": []
   }
 ]
