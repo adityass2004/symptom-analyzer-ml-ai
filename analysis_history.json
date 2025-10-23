@@ -276,5 +276,67 @@
       ]
     },
     "chat": []
+  },
+  {
+    "timestamp": "2025-10-21 21:41:59",
+    "symptoms": [
+      "Skin Rash",
+      "Nodal Skin Eruptions",
+      "Continuous Sneezing",
+      "Cough"
+    ],
+    "predicted_disease": "Fungal infection",
+    "analysis": {
+      "medicines": [
+        "Miconazole cream",
+        "Clotrimazole cream"
+      ],
+      "precautions": [
+        "Avoid sharing personal care items",
+        "Wash hands frequently"
+      ],
+      "advice": "Consult a doctor for further treatment and monitoring of symptoms."
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-10-23 07:50:28",
+    "symptoms": [
+      "Continuous Sneezing",
+      "Shivering",
+      "Ulcers On Tongue"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": [
+        "Antihistamines",
+        "Decongestants"
+      ],
+      "precautions": [
+        "Avoid exposure to allergens",
+        "Stay hydrated"
+      ],
+      "advice": [
+        "Keep the environment clean and dust-free"
+      ]
+    },
+    "chat": [
+      [
+        "You",
+        "how to take dosage  guide me"
+      ],
+      [
+        "AI",
+        "I apologize, but since there is no predicted disease mentioned earlier, I cannot provide dosage guidance for any medicine."
+      ],
+      [
+        "You",
+        "what are the symptoms "
+      ],
+      [
+        "AI",
+        "Based on your reported symptoms - Continuous Sneezing, Shivering, Ulcers On Tongue - here are the key symptoms:\n\n\u2022 Allergic reaction: The continuous sneezing suggests an allergic reaction to something.\n\u2022 Infection or inflammation: Shivering could be a sign of infection or inflammation in the body.\n\u2022 Oral thrush or nutritional deficiency: Ulcers on the tongue may indicate oral thrush (a fungal infection) or a nutritional deficiency, such as iron or vitamin deficiencies."
+      ]
+    ]
   }
 ]
