@@ -16,7 +16,7 @@ HISTORY_FILE = "analysis_history.json"
 # 🧠 Stream response from Mistral
 def stream_mistral_response(prompt):
     data = {
-        "model": "mistral",
+        "model": "llama3",
         "prompt": prompt,
         "stream": True
     }
