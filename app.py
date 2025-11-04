@@ -4,6 +4,7 @@ import requests
 import json
 import datetime
 import os
+import re
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
@@ -36,6 +37,33 @@ def stream_mistral_response(prompt):
         st.error(f"Error decoding Ollama response: {e}")
         yield None
 
+# 🧹 Extract JSON from LLM response
+def extract_json_from_text(text):
+    """Extract JSON object from text that may contain extra content"""
+    try:
+        # First try direct parsing
+        return json.loads(text)
+    except:
+        pass
+    
+    # Try to find JSON block between curly braces
+    json_match = re.search(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', text, re.DOTALL)
+    if json_match:
+        try:
+            return json.loads(json_match.group())
+        except:
+            pass
+    
+    # Try to find JSON in code blocks
+    code_block_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', text, re.DOTALL)
+    if code_block_match:
+        try:
+            return json.loads(code_block_match.group(1))
+        except:
+            pass
+    
+    return None
+
 # 🧪 Run symptom analysis
 def analyze_symptoms(symptoms, disease):
     prompt = (
@@ -46,7 +74,7 @@ def analyze_symptoms(symptoms, disease):
         '  "precautions": "List of precautions",\n'
         '  "advice": "Other important steps or suggestions"\n'
         '}\n'
-        "No explanation. Only JSON."
+        "No explanation. Only JSON. Do not add any text before or after the JSON."
     )
 
     full_text = ""
@@ -66,7 +94,7 @@ def load_history_from_file():
     if os.path.exists(HISTORY_FILE):
         with open(HISTORY_FILE, "r") as f:
             return json.load(f)
-    return
+    return []
 
 # 💄 Dark box UI helper
 def dark_box(content, color="#2b2b2b"):
@@ -80,11 +108,11 @@ def format_list(items):
     return "<ul>" + "".join(f"<li>{i}</li>" for i in items) + "</ul>"
 
 # 🛠 Setup
-st.set_page_config(page_title="AI Symptom Analyzer", layout="wide")
+st.set_page_config(page_title="Disease Predictor", layout="wide")
 st.markdown("""<style>body { background-color: #1c1c1c; }.stApp { color: white; }</style>""", unsafe_allow_html=True)
 
 # 🚀 Header
-st.markdown("<h1 style='text-align:center; color:white;'>🧠 AI Symptom Analyzer</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align:center; color:white;'>🧠 Disease Predictor</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center; color:gray;'>Powered by Ollama Mistral & Disease Prediction Model</p>", unsafe_allow_html=True)
 st.markdown("---")
 
@@ -152,8 +180,6 @@ def predictDisease(symptoms):
     return rf_prediction
 
 # 📥 Input Symptoms
-
-
 with st.expander("📋 View All Available Symptoms"):
     st.markdown("**You can select from the following symptoms:**")
     
@@ -167,17 +193,14 @@ with st.expander("📋 View All Available Symptoms"):
                 idx = i + j + 1
                 cols[j].markdown(f"<div style='background-color:#1e1e1e; color:white; padding:10px; margin:10px; border-radius:8px; font-size:15px;'>{idx}. {available_symptoms[i + j]}</div>", unsafe_allow_html=True)
 
-
-
 symptoms = []
 if not st.session_state.get("viewing_history"):
     cols = st.columns(2)
     symptom_value_range = tuple(["None"] + [" ".join(s.split("_")).title() for s in symptoms_list])
     for i in range(1, 6):
-       
-            s = st.selectbox(f"Symptom {i}", symptom_value_range, key=f"symptom_{i}")
-            if s and s != "None":
-                symptoms.append(s)
+        s = st.selectbox(f"Symptom {i}", symptom_value_range, key=f"symptom_{i}")
+        if s and s != "None":
+            symptoms.append(s)
 
     # 🧪 Analyze Button
     if st.button("💬 Analyze Symptoms"):
@@ -192,20 +215,24 @@ if not st.session_state.get("viewing_history"):
             with st.spinner("Analyzing symptoms..."):
                 try:
                     predicted_disease = predictDisease(",".join(symptoms))
+                    st.session_state.predicted_disease = predicted_disease
                     st.write(f"Predicted Disease: {predicted_disease}")
+                    
                     full_response = ""
                     result_box = st.empty()
                     error_occurred = False
+                    
                     for chunk in analyze_symptoms(symptoms, predicted_disease):
                         if chunk is None:
                             error_occurred = True
                             break
                         full_response = chunk
-                        # result_box.code(full_response, language="json")
 
                     if not error_occurred:
-                        try:
-                            parsed = json.loads(full_response)
+                        # Try to extract and parse JSON
+                        parsed = extract_json_from_text(full_response)
+                        
+                        if parsed:
                             st.session_state.analysis_json = parsed
                             new_entry = {
                                 "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -217,8 +244,19 @@ if not st.session_state.get("viewing_history"):
                             st.session_state.analysis_history.append(new_entry)
                             st.session_state.viewed_entry = new_entry
                             save_history_to_file()
-                        except Exception:
-                            st.error("❌ Could not parse AI response.")
+                            st.success("✅ Analysis completed successfully!")
+                        # else:
+                            # st.error("❌ Could not parse AI response. Raw response:")
+                            st.code(full_response)
+                            
+                            # Create fallback structure
+                            # fallback_analysis = {
+                            #     "medicines": "Please consult a healthcare professional",
+                            #     "precautions": "Seek medical attention",
+                            #     "advice": "The AI response could not be parsed properly"
+                            # }
+                            # st.session_state.analysis_json = fallback_analysis
+                            
                 except Exception as e:
                     st.error(f"Error during disease prediction: {e}")
 
@@ -243,7 +281,7 @@ if st.session_state.get("viewing_history") and st.session_state.get("viewed_entr
     st.markdown(f"### 🩺 Predicted Disease: {entry['predicted_disease']}")
 
     st.markdown("### 🤒 Reported Symptoms")
-    st.markdown(dark_box(format_list(entry.get('symptoms',)), "#222"), unsafe_allow_html=True)
+    st.markdown(dark_box(format_list(entry.get('symptoms')), "#222"), unsafe_allow_html=True)
 
     st.markdown("### 💊 Suggested Medicines")
     st.markdown(dark_box(format_list(entry['analysis'].get('medicines', 'N/A')), "#2c2c2c"), unsafe_allow_html=True)
@@ -266,10 +304,6 @@ if st.session_state.get("symptom_context") and not st.session_state.get("viewing
     st.markdown("---")
     st.markdown("### 💬 Doctor Chat Assistant")
 
-    # Initialize chat history
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = []
-
     # Clear chat button
     if st.button("🧹 Clear Chat"):
         st.session_state.chat_history = []
@@ -283,7 +317,7 @@ if st.session_state.get("symptom_context") and not st.session_state.get("viewing
         chat_prompt = (
             f"The user reported these symptoms: {st.session_state.symptom_context}.\n"
             f"Predicted disease: {st.session_state.get('predicted_disease', 'N/A')}.\n"
-            f"Medicines: {', '.join(st.session_state.get('analysis', {}).get('medicines', []))}\n"
+            f"Medicines: {st.session_state.get('analysis_json', {}).get('medicines', 'N/A')}\n"
             f"The user now asks: '{chat_input}'.\n\n"
             "Only respond with a direct, helpful answer to the user's question based on the given disease and medicines.\n"
             "Do not include extra medical disclaimers or general health advice.\n"
@@ -293,7 +327,6 @@ if st.session_state.get("symptom_context") and not st.session_state.get("viewing
         st.session_state.chat_history.append(("AI", ""))
         response_index = len(st.session_state.chat_history) - 1
 
-        ai_container = st.empty()
         response_text = ""
 
         with st.spinner("AI is typing..."):
