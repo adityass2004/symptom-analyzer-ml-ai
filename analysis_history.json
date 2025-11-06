@@ -338,5 +338,250 @@
         "Based on your reported symptoms - Continuous Sneezing, Shivering, Ulcers On Tongue - here are the key symptoms:\n\n\u2022 Allergic reaction: The continuous sneezing suggests an allergic reaction to something.\n\u2022 Infection or inflammation: Shivering could be a sign of infection or inflammation in the body.\n\u2022 Oral thrush or nutritional deficiency: Ulcers on the tongue may indicate oral thrush (a fungal infection) or a nutritional deficiency, such as iron or vitamin deficiencies."
       ]
     ]
+  },
+  {
+    "timestamp": "2025-11-05 10:28:16",
+    "symptoms": [
+      "Itching",
+      "Fatigue",
+      "Chills"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": [
+        "Antihistamine",
+        "Decongestant"
+      ],
+      "precautions": [
+        "Avoid allergen exposure",
+        "Use antiseptic cream"
+      ],
+      "advice": [
+        "Consult a doctor if symptoms persist"
+      ]
+    },
+    "chat": [
+      [
+        "You",
+        "can i drink cold drinks "
+      ],
+      [
+        "AI",
+        "You can safely drink cold drinks as they may help relieve itching and chills caused by your allergy. However, consider avoiding them for a short while after taking Antihistamine to allow its full absorption."
+      ]
+    ]
+  },
+  {
+    "timestamp": "2025-11-05 18:01:32",
+    "symptoms": [
+      "Itching",
+      "Chills",
+      "Vomiting"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": "Antihistamines, Steroid creams",
+      "precautions": "Avoid allergens, Use air conditioning, Wear loose clothing",
+      "advice": "Seek medical attention if condition worsens"
+    },
+    "chat": [
+      [
+        "You",
+        "Can i drink chilled soft drinks ?"
+      ],
+      [
+        "AI",
+        "Based on your allergy symptoms and medications, it is generally safe to drink chilled soft drinks. However, to minimize any potential allergic reactions:\n\n\u2022 Avoid drinking cold beverages through straws, as this may trigger further itching and allergic responses.\n\u2022 Opt for warm or room temperature soft drinks instead of extremely cold ones.\n\u2022 Monitor your body's response after consuming the soft drink and adjust accordingly if you experience any discomfort."
+      ]
+    ]
+  },
+  {
+    "timestamp": "2025-11-06 10:53:47",
+    "symptoms": [
+      "Cough",
+      "Itching",
+      "Shivering"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": "Antihistamine, Decongestant",
+      "precautions": "Avoid allergen exposure, Use HEPA filters",
+      "advice": "Monitor symptoms, Rest if necessary"
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-11-06 11:26:02",
+    "symptoms": [
+      "Itching",
+      "Skin Rash",
+      "Nodal Skin Eruptions"
+    ],
+    "predicted_disease": "Fungal infection",
+    "analysis": {
+      "medicines": [
+        "Clotrimazole, Miconazole, Ketoconazole"
+      ],
+      "precautions": [
+        "Keep skin clean and dry",
+        "Avoid sharing personal items"
+      ],
+      "advice": [
+        "Seek medical attention if symptoms worsen"
+      ]
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-11-06 11:29:26",
+    "symptoms": [
+      "Muscle Wasting",
+      "Shivering",
+      "Chills"
+    ],
+    "predicted_disease": "Allergy",
+    "analysis": {
+      "medicines": [
+        "Benadryl",
+        "Cetirizine"
+      ],
+      "precautions": [
+        "Avoid exposure to allergen",
+        "Wear protective clothing",
+        "Use air conditioner"
+      ],
+      "advice": [
+        "Take medication as directed",
+        "Monitor symptoms",
+        "Seek medical attention if worsens"
+      ]
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-11-06 13:26:24",
+    "symptoms": [
+      "Abdominal Pain",
+      "Acidity",
+      "Burning Micturition"
+    ],
+    "predicted_disease": "Migraine",
+    "confidence": 4.3921102535345975,
+    "top_3_predictions": [
+      [
+        "Migraine",
+        4.3921102535345975
+      ],
+      [
+        "Urinary tract infection",
+        4.374019884905682
+      ],
+      [
+        "GERD",
+        3.9568884286755273
+      ]
+    ],
+    "analysis": {
+      "medicines": "Please consult a healthcare professional",
+      "precautions": "Seek medical attention",
+      "advice": "Unable to parse AI recommendations. Raw response: ...",
+      "severity": "unknown"
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-11-06 13:26:27",
+    "symptoms": [
+      "Abdominal Pain",
+      "Acidity",
+      "Burning Micturition"
+    ],
+    "predicted_disease": "Migraine",
+    "confidence": 4.3921102535345975,
+    "top_3_predictions": [
+      [
+        "Migraine",
+        4.3921102535345975
+      ],
+      [
+        "Urinary tract infection",
+        4.374019884905682
+      ],
+      [
+        "GERD",
+        3.9568884286755273
+      ]
+    ],
+    "analysis": {
+      "medicines": "Please consult a healthcare professional",
+      "precautions": "Seek medical attention",
+      "advice": "Unable to parse AI recommendations. Raw response: ...",
+      "severity": "unknown"
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-11-06 13:29:26",
+    "symptoms": [
+      "Yellow Crust Ooze",
+      "Itching",
+      "Skin Peeling",
+      "Scurring"
+    ],
+    "predicted_disease": "Psoriasis",
+    "confidence": 10.546044914941527,
+    "top_3_predictions": [
+      [
+        "Psoriasis",
+        10.546044914941527
+      ],
+      [
+        "Impetigo",
+        10.342269719642294
+      ],
+      [
+        "Acne",
+        9.478769716028228
+      ]
+    ],
+    "analysis": {
+      "medicines": "Please consult a healthcare professional",
+      "precautions": "Seek medical attention",
+      "advice": "Unable to parse AI recommendations. Raw response: ...",
+      "severity": "unknown"
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2025-11-06 13:29:46",
+    "symptoms": [
+      "Yellow Crust Ooze",
+      "Itching",
+      "Skin Peeling",
+      "Scurring"
+    ],
+    "predicted_disease": "Psoriasis",
+    "confidence": 10.546044914941527,
+    "top_3_predictions": [
+      [
+        "Psoriasis",
+        10.546044914941527
+      ],
+      [
+        "Impetigo",
+        10.342269719642294
+      ],
+      [
+        "Acne",
+        9.478769716028228
+      ]
+    ],
+    "analysis": {
+      "medicines": "Please consult a healthcare professional",
+      "precautions": "Seek medical attention",
+      "advice": "Unable to parse AI recommendations. Raw response: ...",
+      "severity": "unknown"
+    },
+    "chat": []
   }
 ]
