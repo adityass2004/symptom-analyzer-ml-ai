@@ -169,6 +169,7 @@ def train_and_optimize(X, y):
     
     best_models = {}
     cv_results = {}
+    best_grids = {}
     skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     
     for name, config in models_config.items():
@@ -177,10 +178,20 @@ def train_and_optimize(X, y):
         grid.fit(X_train, y_train)
         best_models[name] = grid.best_estimator_
         cv_results[name] = grid.best_score_
+        best_grids[name] = grid
         print(f"    Best CV Accuracy: {grid.best_score_:.4f}")
         
     best_model_name = max(cv_results, key=cv_results.get)
     print(f"\n  [OK] Overall Best Model: {best_model_name}")
+    
+    best_grid = best_grids[best_model_name]
+    
+    # Get training accuracy for the best model
+    train_acc = accuracy_score(y_train, best_models[best_model_name].predict(X_train))
+    
+    # Get CV std
+    best_idx = best_grid.best_index_
+    cv_std = best_grid.cv_results_['std_test_score'][best_idx]
     
     print("\n--- [5] Probability Calibration ---")
     calibrated_model = CalibratedClassifierCV(
@@ -190,7 +201,15 @@ def train_and_optimize(X, y):
     )
     calibrated_model.fit(X_val, y_val)
     
-    return calibrated_model, X_train, X_val, y_train, y_val, best_model_name
+    model_info = {
+        'model_name': best_model_name,
+        'cv_mean': cv_results[best_model_name],
+        'cv_std': cv_std,
+        'training_accuracy': train_acc,
+        'best_params': best_grid.best_params_
+    }
+    
+    return calibrated_model, X_train, X_val, y_train, y_val, model_info
 
 def evaluate_model(model, X_test, y_test, encoder):
     """Final performance evaluation."""
@@ -272,7 +291,7 @@ def main():
     y = train_df['prognosis']
     
     X_selected, selection_model = engineer_features(X, y)
-    model, _, _, _, _, best_name = train_and_optimize(X_selected, y)
+    model, _, _, _, _, model_info = train_and_optimize(X_selected, y)
     
     X_test_real = test_df.drop('prognosis', axis=1).loc[:, selection_model.get_support()]
     y_test_real = test_df['prognosis']
@@ -297,9 +316,17 @@ def main():
     print("  [OK] Saved core_profiles.pkl for rule-based validation.")
     
     summary = {
-        'best_model_type': best_name,
-        'final_accuracy': evaluation_metrics['accuracy'],
-        'features_count': len(feature_names),
+        'model_type': model_info['model_name'],
+        'training_accuracy': model_info['training_accuracy'],
+        'testing_accuracy': evaluation_metrics['accuracy'],
+        'testing_precision': evaluation_metrics['report']['weighted avg']['precision'],
+        'testing_recall': evaluation_metrics['report']['weighted avg']['recall'],
+        'testing_f1': evaluation_metrics['report']['weighted avg']['f1-score'],
+        'cv_mean': model_info['cv_mean'],
+        'cv_std': model_info['cv_std'],
+        'num_features': len(feature_names),
+        'num_classes': len(encoder.classes_),
+        'best_parameters': model_info['best_params'],
         'timestamp': pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')
     }
     with open('optimized_model_summary.json', 'w') as f:

@@ -115,6 +115,25 @@ def inject_custom_css():
         background: #1e293b !important; border: 1px solid #334155 !important; color: #f1f5f9 !important;
     }
     .stMultiSelect [data-baseweb="tag"] { background: #0ea5e9 !important; color: white !important; }
+    .stats-card {
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 16px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        margin-bottom: 10px;
+    }
+    .stats-card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.4); }
+    .stats-value { font-size: 1.8em; font-weight: 800; color: #38bdf8; margin-bottom: 5px; }
+    .stats-label { color: #94a3b8; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .model-info-card {
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -430,7 +449,7 @@ def display_analysis_results(analysis_data):
             data=json.dumps(report_data, indent=2),
             file_name=f"medical_report_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
             mime="application/json",
-            use_container_width=True
+            width='stretch'
         )
 
 # ==================== CHAT INTERFACE ====================
@@ -511,7 +530,7 @@ def display_history_view(entry):
     with col1:
         st.markdown(f"### 📅 Session Date: {entry['timestamp']}")
     with col2:
-        if st.button("🔙 Back to Dashboard", use_container_width=True):
+        if st.button("🔙 Back to Dashboard", width='stretch'):
             st.session_state.viewing_history = False
             st.session_state.viewed_entry = None
             st.rerun()
@@ -635,7 +654,7 @@ def display_model_info(model_summary):
             if os.path.exists(MODEL_PERFORMANCE_PATH):
                 try:
                     image = Image.open(MODEL_PERFORMANCE_PATH)
-                    st.image(image, use_container_width=True)
+                    st.image(image, width='stretch')
                 except:
                     st.error("Could not load performance chart")
             else:
@@ -645,7 +664,7 @@ def display_model_info(model_summary):
             if os.path.exists(FEATURE_IMPORTANCE_PATH):
                 try:
                     image = Image.open(FEATURE_IMPORTANCE_PATH)
-                    st.image(image, use_container_width=True)
+                    st.image(image, width='stretch')
                 except:
                     st.error("Could not load feature importance chart")
             else:
@@ -655,7 +674,7 @@ def display_model_info(model_summary):
             if os.path.exists(CONFUSION_MATRIX_PATH):
                 try:
                     image = Image.open(CONFUSION_MATRIX_PATH)
-                    st.image(image, use_container_width=True)
+                    st.image(image, width='stretch')
                 except:
                     st.error("Could not load confusion matrix")
             else:
@@ -719,13 +738,7 @@ def display_main_view(model, encoder, feature_names, symptom_index, core_profile
     # Analyze button
     col_a, col_b, col_c = st.columns([1, 2, 1])
     with col_b:
-        analyze_btn = st.button("🔬 **Analyze Symptoms**", use_container_width=True, type="primary")
-    
-    if analyze_btn:
-        if len(symptoms) < 3:
-            st.error("⚠️ Please select at least 3 symptoms for accurate prediction.")
-        else:
-            perform_analysis(symptoms, model, encoder, feature_names, symptom_index, core_profiles, ollama_status)
+        analyze_btn = st.button("🔬 **Analyze Symptoms**", width='stretch', type="primary")
     
     if analyze_btn:
         if len(symptoms) < 3:
@@ -873,7 +886,7 @@ def main():
         st.markdown("## 📊 Dashboard")
         
         # Model info button
-        if st.button("ℹ️ Model Information", use_container_width=True):
+        if st.button("ℹ️ Model Information", width='stretch'):
             st.session_state.show_model_info = True # Navigate to Model Info
             st.session_state.viewing_history = False
             st.rerun()
@@ -902,7 +915,7 @@ def main():
         st.markdown("---")
         st.markdown("## 🎯 Navigation")
         
-        if st.button("🏠 New Analysis", use_container_width=True, type="primary"):
+        if st.button("🏠 New Analysis", width='stretch', type="primary"):
             st.session_state.viewing_history = False
             st.session_state.viewed_entry = None
             st.session_state.current_analysis = None # Reset for new analysis
@@ -910,7 +923,7 @@ def main():
             st.session_state.show_model_info = False # Reset model info view
             st.rerun()
                 
-        if st.button("📈 View Model Charts", use_container_width=True):
+        if st.button("📈 View Model Charts", width='stretch'):
             st.session_state.show_model_info = True
             st.session_state.viewing_history = False
             st.rerun()
@@ -930,7 +943,7 @@ def main():
                 if st.button(
                     f"📅 {timestamp[:16]}\n🔬 {disease[:20]}{'...' if len(disease) > 20 else ''}\n🎯 {confidence:.1f}%",
                     key=f"hist_{original_index}",
-                    use_container_width=True
+                    width='stretch'
                 ):
                     st.session_state.viewing_history = True
                     st.session_state.viewed_entry = entry
@@ -948,7 +961,7 @@ def main():
                 data=json.dumps(st.session_state.analysis_history, indent=2),
                 file_name=f"medical_history_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
                 mime="application/json",
-                use_container_width=True
+                width='stretch'
             )
     
     # Main content routing

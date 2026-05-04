@@ -1,6 +1,19 @@
 {
-    "best_model_type": "Random Forest",
-    "final_accuracy": 0.9512195121951219,
-    "features_count": 66,
-    "timestamp": "2026-05-04 09:08:10"
+    "model_type": "Random Forest",
+    "training_accuracy": 0.9727201870615745,
+    "testing_accuracy": 0.9512195121951219,
+    "testing_precision": 0.9512195121951219,
+    "testing_recall": 0.9512195121951219,
+    "testing_f1": 0.9430894308943089,
+    "cv_mean": 0.9727201796902708,
+    "cv_std": 0.000821493317072649,
+    "num_features": 66,
+    "num_classes": 41,
+    "best_parameters": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "n_estimators": 100
+    },
+    "timestamp": "2026-05-04 10:05:38"
 }
