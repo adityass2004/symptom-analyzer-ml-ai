@@ -1,8 +1,8 @@
 ---
-title: AI Disease Predictor Pro
+title: AI Disease Predictor
 emoji: 🏥
-colorFrom: blue
-colorTo: green
+colorFrom: indigo
+colorTo: blue
 sdk: docker
 app_port: 8501
 pinned: false
