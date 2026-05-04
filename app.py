@@ -22,13 +22,13 @@ MODEL_PATH = "disease_prediction_model.pkl"
 ENCODER_PATH = "label_encoder.pkl"
 FEATURE_NAMES_PATH = "feature_names.pkl"
 SYMPTOM_INDEX_PATH = "symptom_index.pkl"
-MODEL_SUMMARY_PATH = "model_summary.json"
+MODEL_SUMMARY_PATH = "optimized_model_summary.json"
 
 # Chart paths
 CHARTS_DIR = "Charts"
-CONFUSION_MATRIX_PATH = os.path.join(CHARTS_DIR, "confusion_matrix.png")
-FEATURE_IMPORTANCE_PATH = os.path.join(CHARTS_DIR, "feature_importance.png")
-MODEL_PERFORMANCE_PATH = os.path.join(CHARTS_DIR, "model_performance_summary.png")
+CONFUSION_MATRIX_PATH = os.path.join(CHARTS_DIR, "confusion_matrix_final.png")
+FEATURE_IMPORTANCE_PATH = os.path.join(CHARTS_DIR, "top_features.png")
+MODEL_PERFORMANCE_PATH = os.path.join(CHARTS_DIR, "disease_distribution.png")
 
 # Dataset paths
 DATASET_DIR = "dataset"
@@ -333,30 +333,66 @@ def load_pretrained_model():
         feature_names = joblib.load(FEATURE_NAMES_PATH)
         symptom_index = joblib.load(SYMPTOM_INDEX_PATH)
         
+        # Load core profiles for validation
+        core_profiles = {}
+        if os.path.exists("core_profiles.pkl"):
+            core_profiles = joblib.load("core_profiles.pkl")
+        
         # Load model summary
         model_summary = load_model_summary()
         
-        return model, encoder, feature_names, symptom_index, model_summary
+        return model, encoder, feature_names, symptom_index, model_summary, core_profiles
         
     except Exception as e:
         st.error(f"❌ Error loading model: {e}")
         st.stop()
 
-def predict_disease(symptoms, model, encoder, symptom_index):
-    """Predict disease from symptoms"""
+def predict_disease(symptoms, model, encoder, symptom_index, core_profiles, feature_names=None):
+    """Predict disease from symptoms with rule-based validation"""
     symptoms_list = symptoms.split(",")
     input_data = [0] * len(symptom_index)
     
+    # Normalize input symptoms to match keys in symptom_index
+    normalized_input = []
     for symptom in symptoms_list:
         if symptom in symptom_index:
             index = symptom_index[symptom]
             input_data[index] = 1
+            # Get the internal name (e.g. 'high_fever')
+            internal_name = feature_names[index] if feature_names is not None else ""
+            normalized_input.append(internal_name)
     
-    input_data = np.array(input_data).reshape(1, -1)
+    if feature_names is not None:
+        input_data = pd.DataFrame([input_data], columns=feature_names)
+    else:
+        input_data = np.array(input_data).reshape(1, -1)
+        
     prediction = encoder.classes_[model.predict(input_data)[0]]
     probabilities = model.predict_proba(input_data)[0]
     confidence = max(probabilities) * 100
     
+    # --- Rule-Based Validation ---
+    is_medically_consistent = True
+    validation_message = ""
+    
+    if prediction in core_profiles:
+        cores = core_profiles[prediction]
+        # Check how many core symptoms are present in user input
+        matching_cores = [s for s in normalized_input if s in cores]
+        
+        # Specific strict rules for localized diseases
+        localized_diseases = ['Varicose veins', 'Acne', 'Arthritis', 'Psoriasis']
+        if prediction in localized_diseases and not matching_cores:
+            is_medically_consistent = False
+            confidence = confidence * 0.1 # Heavily penalize confidence
+            validation_message = f"⚠️ Low medical consistency: Predicted {prediction} but missing core localized symptoms."
+        
+        # General mismatch check
+        elif len(matching_cores) == 0 and len(normalized_input) > 0:
+            is_medically_consistent = False
+            confidence = confidence * 0.5 # Penalize confidence
+            validation_message = f"⚠️ Prediction might be inconsistent with reported symptoms."
+
     # Get top 3 predictions
     top_3_indices = np.argsort(probabilities)[-3:][::-1]
     top_3_predictions = [
@@ -364,7 +400,7 @@ def predict_disease(symptoms, model, encoder, symptom_index):
         for idx in top_3_indices
     ]
     
-    return prediction, confidence, top_3_predictions
+    return prediction, confidence, top_3_predictions, is_medically_consistent, validation_message
 
 # ==================== ANALYSIS FUNCTION ====================
 def analyze_symptoms(symptoms, disease):
@@ -751,7 +787,7 @@ def display_model_info(model_summary):
         st.warning("Model summary file not found. Please run the training script.")
 
 # ==================== MAIN VIEW ====================
-def display_main_view(model, encoder, feature_names, symptom_index, ollama_status):
+def display_main_view(model, encoder, feature_names, symptom_index, core_profiles, ollama_status):
     """Display the main symptom input and analysis view"""
     
     # Available symptoms
@@ -812,7 +848,7 @@ def display_main_view(model, encoder, feature_names, symptom_index, ollama_statu
         if len(symptoms) < 3:
             st.error("⚠️ Please select at least 3 symptoms for accurate prediction.")
         else:
-            perform_analysis(symptoms, model, encoder, symptom_index, ollama_status)
+            perform_analysis(symptoms, model, encoder, feature_names, symptom_index, core_profiles, ollama_status)
     
     # Display current analysis
     if st.session_state.current_analysis:
@@ -822,17 +858,18 @@ def display_main_view(model, encoder, feature_names, symptom_index, ollama_statu
 
 # ==================== ANALYSIS EXECUTION ====================
 # ==================== ANALYSIS EXECUTION ====================
-def perform_analysis(symptoms, model, encoder, symptom_index, ollama_status):
+def perform_analysis(symptoms, model, encoder, feature_names, symptom_index, core_profiles, ollama_status):
     """Perform disease prediction and AI analysis"""
     
-    # The 'try' block must be aligned with 'except'
-    # In this case, both must be aligned with 'with st.spinner(...)'
     try: 
         with st.spinner("🔄 Analyzing your symptoms..."):
-            # Predict disease (This is the start of the try block content)
-            predicted_disease, confidence, top_3 = predict_disease(
-                ",".join(symptoms), model, encoder, symptom_index
+            # Predict disease with validation
+            predicted_disease, confidence, top_3, is_consistent, val_msg = predict_disease(
+                ",".join(symptoms), model, encoder, symptom_index, core_profiles, feature_names
             )
+            
+            if not is_consistent:
+                st.warning(val_msg)
             
             st.success(f"✅ Analysis complete! Predicted: **{predicted_disease}** (Confidence: {confidence:.1f}%)")
             
@@ -859,8 +896,14 @@ def perform_analysis(symptoms, model, encoder, symptom_index, ollama_status):
                 
                 status_text.text("🤖 AI is generating comprehensive recommendations...")
                 
-                # ... (rest of the streaming logic) ...
+                # Use the analyze_symptoms generator to stream the response
+                for i, updated_text in enumerate(analyze_symptoms(symptoms, predicted_disease)):
+                    if updated_text:
+                        full_response = updated_text
+                        # Update progress roughly
+                        progress_bar.progress(min(0.1 + (i * 0.05), 0.9))
                 
+                progress_bar.progress(1.0)
                 progress_bar.empty()
                 status_text.empty()
                 
@@ -923,7 +966,7 @@ def main():
         st.session_state.show_model_info = False
     
     # Load model
-    model, encoder, feature_names, symptom_index, model_summary = load_pretrained_model()
+    model, encoder, feature_names, symptom_index, model_summary, core_profiles = load_pretrained_model()
     
     # Check Ollama connection
     ollama_status = check_ollama_connection()
@@ -1032,7 +1075,7 @@ def main():
     elif st.session_state.viewing_history and st.session_state.viewed_entry:
         display_history_view(st.session_state.viewed_entry)
     else:
-        display_main_view(model, encoder, feature_names, symptom_index, ollama_status)
+        display_main_view(model, encoder, feature_names, symptom_index, core_profiles, ollama_status)
 
 # ==================== RUN APP ====================
 if __name__ == "__main__":
