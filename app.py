@@ -38,198 +38,83 @@ TESTING_DATA_PATH = os.path.join(DATASET_DIR, "Testing.csv")
 # ==================== CUSTOM CSS ====================
 def inject_custom_css():
     st.markdown("""
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-    /* Main app styling */
-    .stApp {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    /* Card styling */
-    .custom-card {
-        background: rgba(255, 255, 255, 0.95);
+    * { font-family: 'Outfit', sans-serif; }
+    .stApp { background-color: #0f172a; color: #f1f5f9; }
+    .custom-card, .glass-card, .metric-card {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 20px;
         padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        backdrop-filter: blur(4px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
         margin-bottom: 20px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
-    
-    /* Header styling */
     .main-header {
-        text-align: center;
-        color: white;
-        font-size: 3.5em;
-        font-weight: 800;
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        background: linear-gradient(to right, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center; font-size: 3.5em; font-weight: 800;
+        margin-bottom: 5px; letter-spacing: -1px;
     }
-    
     .sub-header {
-        text-align: center;
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.2em;
-        margin-bottom: 30px;
+        text-align: center; color: #94a3b8; font-size: 1.2em; font-weight: 300;
+        margin-bottom: 40px;
     }
-    
-    /* Symptom card */
-    .symptom-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 12px;
-        border-radius: 10px;
-        margin: 5px;
-        font-size: 14px;
-        font-weight: 600;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: transform 0.2s;
-    }
-    
-    .symptom-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    
-    /* Result box styling */
-    .result-box {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        color: white;
-        padding: 20px;
-        border-radius: 12px;
-        margin: 15px 0;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
-    
-    .result-box h3 {
-        margin-top: 0;
-        font-size: 1.5em;
-        border-bottom: 2px solid rgba(255,255,255,0.3);
-        padding-bottom: 10px;
-    }
-    
-    /* Info boxes */
-    .info-box {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        color: white;
-        padding: 20px;
-        border-radius: 12px;
-        margin: 10px 0;
-    }
-    
-    .warning-box {
-        background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        color: white;
-        padding: 20px;
-        border-radius: 12px;
-        margin: 10px 0;
-    }
-    
-    .success-box {
-        background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-        color: white;
-        padding: 20px;
-        border-radius: 12px;
-        margin: 10px 0;
-    }
-    
-    /* Model info card */
-    .model-info-card {
-        background: white;
-        padding: 15px;
-        border-radius: 10px;
-        margin: 10px 0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    
-    /* Stats card */
-    .stats-card {
-        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        padding: 15px;
-        border-radius: 10px;
-        text-align: center;
-        margin: 10px 0;
-    }
-    
-    .stats-value {
-        font-size: 2em;
-        font-weight: 700;
-        color: #667eea;
-    }
-    
-    .stats-label {
-        font-size: 0.9em;
-        color: #666;
-    }
-    
-    /* Chat message styling */
-    .chat-message {
-        padding: 15px;
-        border-radius: 10px;
-        margin: 10px 0;
-        animation: fadeIn 0.5s;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Button styling */
     .stButton > button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 25px;
-        font-weight: 600;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+        color: white; border: none;
+        padding: 12px 30px; border-radius: 12px; font-weight: 600;
+        transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
     }
-    
     .stButton > button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.4);
     }
-    
-    /* Metrics styling */
-    .metric-card {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        margin: 10px 0;
+    .symptom-tag, .symptom-card {
+        background: rgba(14, 165, 233, 0.1); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);
+        padding: 8px 16px; border-radius: 10px; display: inline-block; margin: 4px;
+        font-size: 0.9em;
     }
-    
-    .metric-value {
-        font-size: 2.5em;
-        font-weight: 700;
-        color: #667eea;
+    .result-box, .prediction-card {
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+        border: 1px solid rgba(14, 165, 233, 0.3);
+        padding: 30px; border-radius: 20px; margin: 20px 0;
     }
-    
-    .metric-label {
-        font-size: 1em;
-        color: #666;
-        margin-top: 5px;
+    .confidence-meter {
+        height: 10px; background: #1e293b; border-radius: 10px; overflow: hidden; margin: 15px 0;
     }
-    
-    /* Tab styling */
+    .confidence-fill {
+        height: 100%; background: linear-gradient(to right, #0ea5e9, #6366f1);
+        transition: width 1s ease-in-out;
+    }
+    [data-testid="stSidebar"] { background-color: #020617 !important; border-right: 1px solid rgba(255, 255, 255, 0.05); }
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #94a3b8; }
     .stTabs [data-baseweb="tab-list"] {
-        gap: 10px;
+        gap: 10px; background: #1e293b; padding: 6px; border-radius: 14px;
     }
-    
     .stTabs [data-baseweb="tab"] {
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 10px;
-        padding: 10px 20px;
+        background-color: transparent !important; color: #94a3b8 !important; border-radius: 10px !important;
     }
-    
     .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
+        background: #0f172a !important; color: #38bdf8 !important; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
+    .info-box, .success-box {
+        border-left: 4px solid #0ea5e9; background: rgba(14, 165, 233, 0.05);
+        padding: 15px; border-radius: 8px; margin: 10px 0;
+    }
+    .warning-box {
+        border-left: 4px solid #f43f5e; background: rgba(244, 63, 94, 0.05);
+        padding: 15px; border-radius: 8px; margin: 10px 0;
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    .stMultiSelect [data-baseweb="select"], .stSelectbox [data-baseweb="select"] {
+        background: #1e293b !important; border: 1px solid #334155 !important; color: #f1f5f9 !important;
+    }
+    .stMultiSelect [data-baseweb="tag"] { background: #0ea5e9 !important; color: white !important; }
     </style>
     """, unsafe_allow_html=True)
 
@@ -526,14 +411,6 @@ def display_analysis_results(analysis_data):
         st.markdown("### 🚨 When to See a Doctor Immediately")
         when_to_see = analysis_data["analysis"].get("when_to_see_doctor", "If symptoms worsen or persist, consult a healthcare professional immediately.")
         st.error(when_to_see)
-        st.markdown("""
-        #### Emergency Signs:
-        - Severe chest pain or difficulty breathing
-        - Sudden confusion or loss of consciousness
-        - Severe bleeding or trauma
-        - High fever (above 103°F/39.4°C) that doesn't respond to medication
-        - Sudden severe headache or vision changes
-        """)
     
     # Download report button
     st.markdown("---")
@@ -850,6 +727,12 @@ def display_main_view(model, encoder, feature_names, symptom_index, core_profile
         else:
             perform_analysis(symptoms, model, encoder, feature_names, symptom_index, core_profiles, ollama_status)
     
+    if analyze_btn:
+        if len(symptoms) < 3:
+            st.error("⚠️ Please select at least 3 symptoms for accurate prediction.")
+        else:
+            perform_analysis(symptoms, model, encoder, feature_names, symptom_index, core_profiles, ollama_status)
+    
     # Display current analysis
     if st.session_state.current_analysis:
         display_analysis_results(st.session_state.current_analysis)
@@ -1019,7 +902,6 @@ def main():
         st.markdown("---")
         st.markdown("## 🎯 Navigation")
         
-        # FIX 1 & 2: Corrected "New Analysis" button logic
         if st.button("🏠 New Analysis", use_container_width=True, type="primary"):
             st.session_state.viewing_history = False
             st.session_state.viewed_entry = None

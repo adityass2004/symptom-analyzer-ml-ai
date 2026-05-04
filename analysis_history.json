@@ -123,5 +123,100 @@
       "severity": "unknown"
     },
     "chat": []
+  },
+  {
+    "timestamp": "2026-05-04 09:19:20",
+    "symptoms": [
+      "Abdominal Pain",
+      "Blackheads",
+      "Blister",
+      "Blood In Sputum"
+    ],
+    "predicted_disease": "Impetigo",
+    "confidence": 26.626552084109928,
+    "top_3_predictions": [
+      [
+        "Impetigo",
+        26.626552084109928
+      ],
+      [
+        "Acne",
+        17.599645913324146
+      ],
+      [
+        "Tuberculosis",
+        14.441593765452367
+      ]
+    ],
+    "analysis": {
+      "medicines": "AI Assistant offline - Please consult a healthcare professional",
+      "precautions": "AI Assistant offline - Seek medical attention",
+      "advice": "AI Assistant offline - Start Ollama for AI recommendations",
+      "severity": "unknown"
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2026-05-04 09:27:17",
+    "symptoms": [
+      "Abdominal Pain",
+      "Stomach Pain",
+      "Passage Of Gases"
+    ],
+    "predicted_disease": "Peptic ulcer diseae",
+    "confidence": 42.38948842981569,
+    "top_3_predictions": [
+      [
+        "Peptic ulcer diseae",
+        42.38948842981569
+      ],
+      [
+        "Drug Reaction",
+        16.28722262496502
+      ],
+      [
+        "GERD",
+        3.807785855199038
+      ]
+    ],
+    "analysis": {
+      "medicines": "AI Assistant offline - Please consult a healthcare professional",
+      "precautions": "AI Assistant offline - Seek medical attention",
+      "advice": "AI Assistant offline - Start Ollama for AI recommendations",
+      "severity": "unknown"
+    },
+    "chat": []
+  },
+  {
+    "timestamp": "2026-05-04 09:28:54",
+    "symptoms": [
+      "Breathlessness",
+      "Sweating",
+      "Vomiting",
+      "Fast Heart Rate"
+    ],
+    "predicted_disease": "Heart attack",
+    "confidence": 90.61356212393763,
+    "top_3_predictions": [
+      [
+        "Heart attack",
+        90.61356212393763
+      ],
+      [
+        "Hyperthyroidism",
+        1.2303657946217728
+      ],
+      [
+        "Pneumonia",
+        0.6088600511526524
+      ]
+    ],
+    "analysis": {
+      "medicines": "AI Assistant offline - Please consult a healthcare professional",
+      "precautions": "AI Assistant offline - Seek medical attention",
+      "advice": "AI Assistant offline - Start Ollama for AI recommendations",
+      "severity": "unknown"
+    },
+    "chat": []
   }
 ]
